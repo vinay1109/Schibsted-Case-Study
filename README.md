@@ -101,7 +101,7 @@ Which helps to ensure downstream consumers always receive reliable data.
 
 ## One Improvement I Would Make Before Going Live
 
-1.  **Exactly-One processing** — safe to re-run without duplicating data
+1.  **Exactly-One processing** : implement internal control table to handle duplicates to safe to re-run the pipeline or duplicate events
 
 ---
 
