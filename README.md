@@ -2,7 +2,7 @@
 
 ## Overview
 
-A lightweight data pipeline built on the [FakeStore API](https://fakestoreapi.com/) that models user shopping behavior. 
+Data pipeline built on the [FakeStore API](https://fakestoreapi.com/) that models user shopping behavior. 
 
 This project shows how a simple API dataset can be transformed into useful analytical and feature-oriented datasets using a structured data pipeline.
 
@@ -46,7 +46,7 @@ Curate Layer    -> category_popularity_summary
 
 **`category_popularity_summary`** — aggregated category performance (total items sold, revenue, unique users). Useful for dashboards and product analytics.
 
-**`user_interest_features`** — user-level behavioral features (total spend, cart count, top category, premium spend ratio, recency). Designed for segmentation and ML use cases.
+**`user_interest_features`** — user-level behavioral features (total spend, cart count, top category, premium spend ratio, freshness). Designed for segmentation and ML use cases.
 
 All outputs are saved as `.csv` and `.parquet` under `data/curate/`.
 
@@ -58,7 +58,7 @@ All outputs are saved as `.csv` and `.parquet` under `data/curate/`.
 - **DuckDB** - DuckDB is used as a lightweight analytical engine instead of a cloud warehouse like Snowflake.
 - **No orchestration** — The pipeline is executed as a single python script rather than orchestrated through Airflow.
 - **Minimal validation** — The pipeline assumes that the FakeStore API responses are well-formed.
-- **Full reload** — No incremental processing; each run replaces all data
+- **Full reload** — No incremental processing, each run replaces all data
 - **Batch execution** - The pipeline runs as a batch job instead of a real-time streaming pipeline.
 
 ---
@@ -101,7 +101,7 @@ Which helps to ensure downstream consumers always receive reliable data.
 
 ## One Improvement I Would Make Before Going Live
 
-1.  **Exactly-One processing** : implement internal control table to handle duplicates to safe to re-run the pipeline or duplicate events
+1.  **Exactly-Once processing** : Ensure that rerunning the pipeline does not create duplicate records or inconsistent outputs
 
 ---
 
@@ -114,10 +114,11 @@ Which helps to ensure downstream consumers always receive reliable data.
 | `total_spend`, `avg_cart_value` | Purchase intent / value |
 | `top_category_by_spend` | Category affinity |
 | `distinct_categories` | Variety of categories |
-| `days_since_last_cart` | Freshness |
+| `days_since_last_cart` | Freshness / Recency |
 | `premium_spend_ratio` | Price sensitivity |
 
-**How I'd serve it**: For a batch ML use case, I would store features in a curated snowflake table. 
-If low-latency online inference were needed, I would keep snowflake as the offline feature store and introduce a separate online serving layer.
+**How I'd serve it**: For a batch machine learning use case, I would store the features in a curated table in Snowflake, which can act as the offline feature store for model training and batch inference.
 
-**Pipeline change**: Add a feature store write step at the end of the curate layer - no structural changes needed.
+If the system later required low-latency predictions, I would keep Snowflake as the offline feature store and introduce an additional online feature serving layer optimized for fast access.
+
+**Pipeline change**: The pipeline itself would require only a small extension. After the curate layer, I would add a step that writes the prepared features to the feature store - no structural changes needed.
