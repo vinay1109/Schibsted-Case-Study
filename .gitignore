@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+data/raw/*
+data/enrich/*
+data/curated/*
+data/warehouse/*
+!data/raw/.gitkeep
+!data/enrich/.gitkeep
+!data/curated/.gitkeep
+!data/warehouse/.gitkeep

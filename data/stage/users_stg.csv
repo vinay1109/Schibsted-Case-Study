@@ -1,0 +1,11 @@
+user_id,email,username,firstname,lastname,city,zipcode,lat,lon
+1,john@gmail.com,johnd,john,doe,kilcoole,12926-3874,-37.3159,81.1496
+2,morrison@gmail.com,mor_2314,david,morrison,kilcoole,12926-3874,-37.3159,81.1496
+3,kevin@gmail.com,kevinryan,kevin,ryan,Cullman,29567-1452,40.3467,-30.131
+4,don@gmail.com,donero,don,romer,San Antonio,98234-1734,50.3467,-20.131
+5,derek@gmail.com,derek,derek,powell,san Antonio,80796-1234,40.3467,-40.131
+6,david_r@gmail.com,david_r,david,russell,el paso,12346-0456,20.1677,-10.6789
+7,miriam@gmail.com,snyder,miriam,snyder,fresno,96378-0245,10.3456,20.6419
+8,william@gmail.com,hopkins,william,hopkins,mesa,96378-0245,50.3456,10.6419
+9,kate@gmail.com,kate_h,kate,hale,miami,96378-0245,40.12456,20.5419
+10,jimmie@gmail.com,jimmie_k,jimmie,klein,fort wayne,10256-4532,30.24788,-20.545419

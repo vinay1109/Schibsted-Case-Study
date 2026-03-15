@@ -1,0 +1,5 @@
+category,unique_users,cart_count,total_items_sold,total_revenue,avg_product_price,avg_quantity_per_line
+men's clothing,3,4,31,2646.44,77.2,4.43
+jewelery,2,2,4,1410.98,238.66,1.33
+electronics,2,2,6,624.0,95.67,2.0
+women's clothing,1,1,1,9.85,9.85,1.0
