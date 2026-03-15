@@ -73,7 +73,21 @@ In production this pipeline would run as a daily scheduled job:
 - **Monitoring**: freshness checks, row count anomaly detection, Slack alerts on failure
 - **Observability**: structured logging to log tables using cloudwatch logs
 
-The raw -> stage -> enrich -> curate pattern stays the same.
+The raw -> stage -> enrich -> curate pattern will stay the same.
+
+---
+
+## Monitoring Consideration
+
+One important metric to monitor would be **data freshness**.
+
+Example checks:
+
+- Has the pipeline run successfully today?
+- Did the number of carts processed change significantly?
+- Are new categories appearing unexpectedly?
+
+Which helps to ensure downstream consumers always receive reliable data.
 
 ---
 
