@@ -63,6 +63,14 @@ All outputs are saved as `.csv` and `.parquet` under `data/curate/`.
 
 ---
 
+## What I'd Improve With More Time
+
+1. **Data quality checks** — non-null IDs, non-negative quantities, valid price values
+2. **Incremental processing** — instead of reprocessing all data each run, i would implement incremental ingestion/transformation using dbt.
+3. **Schema contracts** — explicit schemas per layer to protect downstream consumers
+
+---
+
 ## Production Design
 
 In production this pipeline would run as a daily scheduled job:
@@ -71,7 +79,7 @@ In production this pipeline would run as a daily scheduled job:
 - **Storage**: raw snapshots in S3
 - **Warehouse**: Snowflake with dbt models for each layer
 - **Monitoring**: freshness checks, row count anomaly detection, Slack alerts on failure
-- **Observability**: structured logging to log tables using cloudwatch logs
+- **Observability**: structured logging to log tables using cloudwatch logs for monitoring pipeline health.
 
 The raw -> stage -> enrich -> curate pattern will stay the same.
 
@@ -91,12 +99,9 @@ Which helps to ensure downstream consumers always receive reliable data.
 
 ---
 
-## What I'd Improve Before Going Live
+## One Improvement I Would Make Before Going Live
 
-1. **Data quality checks** — non-null IDs, non-negative quantities, valid prices
-2. **Incremental processing** — ingest only new/updated records
-3. **Exactly-One processing** — safe to re-run without duplicating data
-4. **Schema contracts** — explicit schemas per layer to protect downstream consumers
+1.  **Exactly-One processing** — safe to re-run without duplicating data
 
 ---
 
