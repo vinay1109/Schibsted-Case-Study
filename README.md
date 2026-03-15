@@ -115,4 +115,4 @@ Which helps to ensure downstream consumers always receive reliable data.
 **How I'd serve it**: For a batch ML use case, I would store features in a curated snowflake table. 
 If low-latency online inference were needed, I would keep snowflake as the offline feature store and introduce a separate online serving layer.
 
-**Pipeline change**: Add a feature store write step at the end of the curate layer — no structural changes needed.
+**Pipeline change**: Add a feature store write step at the end of the curate layer - no structural changes needed.
